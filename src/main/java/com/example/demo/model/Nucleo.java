@@ -1,9 +1,7 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Nucleo {
@@ -14,4 +12,10 @@ public class Nucleo {
 
     private String nome;
     private String cidade;
+
+    @OneToMany(mappedBy = "nucleo", targetEntity = Apejotista.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Apejotista> apejotistas;
+
+    @OneToMany(mappedBy = "nucleo", targetEntity = Preceptor.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Preceptor> preceptores;
 }
