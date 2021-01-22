@@ -17,8 +17,8 @@ public class Apejotista extends User {
     @JoinColumn(name = "nucleo_id")
     private Nucleo nucleo;
 
-    public Apejotista(Long ID, String name, int age, String genero, LocalDate birthday, boolean active, boolean ingresso, Cargos cargo) {
-        super(ID, name, age, genero, birthday, active);
+    public Apejotista(String name, int age, String genero, LocalDate birthday, boolean active, boolean ingresso, Cargos cargo) {
+        super(name, age, genero, birthday, active);
         this.ingressou = ingresso;
         this.cargo = cargo;
     }

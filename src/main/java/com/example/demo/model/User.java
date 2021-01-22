@@ -21,8 +21,7 @@ public abstract class User {
     protected LocalDate birthday;
     protected boolean active;
 
-    public User(Long ID, String name, int age, String genero, LocalDate birthday, boolean active) {
-        this.ID = ID;
+    public User(String name, int age, String genero, LocalDate birthday, boolean active) {
         this.name = name;
         this.age = age;
         this.genero = genero;

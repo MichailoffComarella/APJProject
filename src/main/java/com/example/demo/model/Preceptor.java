@@ -19,8 +19,8 @@ public class Preceptor extends User {
     @JoinColumn(name = "nucleo_id")
     private Nucleo nucleo;
 
-    public Preceptor(Long ID, String name, int age, String genero, LocalDate birthday, boolean active, String statusRelacionamento, String afiliacao) {
-        super(ID, name, age, genero, birthday, active);
+    public Preceptor(String name, int age, String genero, LocalDate birthday, boolean active, String statusRelacionamento, String afiliacao) {
+        super(name, age, genero, birthday, active);
         this.statusRelacionamento = statusRelacionamento;
         this.afiliacao = afiliacao;
     }
