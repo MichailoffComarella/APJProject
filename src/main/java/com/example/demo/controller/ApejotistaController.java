@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.ApejotistaDTO;
 import com.example.demo.model.Apejotista;
 import com.example.demo.model.Cargos;
 import com.example.demo.repository.ApejotistaRepository;
@@ -23,19 +24,19 @@ public class ApejotistaController {
     private final ApejotistaService apejotistaService;
 
     @GetMapping
-    public ResponseEntity<List<Apejotista>> getApejotistas(){
-        return new ResponseEntity<List<Apejotista>>(apejotistaService.getApejotistas(), HttpStatus.OK);
+    public ResponseEntity<List<ApejotistaDTO>> getApejotistas(){
+        return new ResponseEntity<List<ApejotistaDTO>>(apejotistaService.getApejotistas(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Apejotista> getApejotistas(@PathVariable Long id){
+    public ResponseEntity<ApejotistaDTO> getApejotistas(@PathVariable Long id){
         return ResponseEntity.ok(apejotistaService.getApejotistaById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Apejotista> salvar(@RequestBody Apejotista apj) {
-        apejotistaService.criarApejotista(apj);
-        return ResponseEntity.created(URI.create("/apejotistas/" + apj.getID())).build();
+    public ResponseEntity<ApejotistaDTO> salvar(@RequestBody ApejotistaDTO dto) {
+        apejotistaService.criarApejotista(dto);
+        return ResponseEntity.created(URI.create("/apejotistas/" + dto.getID())).build();
     }
 
     @DeleteMapping("/{id}")
