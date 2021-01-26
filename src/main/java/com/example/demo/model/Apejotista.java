@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class Apejotista extends User {
     private Cargos cargo;
 
     @ManyToOne
+    @Autowired
     @JoinColumn(name = "nucleo_id")
     private Nucleo nucleo;
 
