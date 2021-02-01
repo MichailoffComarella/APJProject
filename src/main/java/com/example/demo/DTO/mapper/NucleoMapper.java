@@ -2,19 +2,13 @@ package com.example.demo.DTO.mapper;
 
 import com.example.demo.DTO.NucleoDTO;
 import com.example.demo.model.Nucleo;
+import org.mapstruct.Mapper;
 
-public class NucleoMapper {
 
-    public static Nucleo toNucleo(NucleoDTO nucleoDTO) {
+@Mapper(componentModel = "spring")
+public interface NucleoMapper {
 
-        Nucleo nucleo = new Nucleo(nucleoDTO.getName(), nucleoDTO.getNumber(), nucleoDTO.getCity(), nucleoDTO.isActive());
+    NucleoDTO nucleoToNucleoDTO(Nucleo nucleo);
+    Nucleo nucleoDTOtoNucleo(NucleoDTO nucleoDTO);
 
-        nucleo.setID(nucleoDTO.getID());
-
-        return nucleo;
-    }
-
-    public static NucleoDTO toNucleoDTO(Nucleo nucleo){
-        return new NucleoDTO(nucleo.getID(), nucleo.getName(), nucleo.getNumber(), nucleo.getCity(), nucleo.isActive());
-    }
 }

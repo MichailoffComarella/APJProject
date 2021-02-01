@@ -4,6 +4,7 @@ import com.example.demo.DTO.NucleoDTO;
 import com.example.demo.model.Nucleo;
 import com.example.demo.service.NucleoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/nucleos")
 public class NucleoController {
 
-    private final NucleoService nucleoService;
+    @Autowired
+    private NucleoService nucleoService;
 
     @GetMapping
     public ResponseEntity<List<NucleoDTO>> getNucleos(){

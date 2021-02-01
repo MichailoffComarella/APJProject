@@ -5,6 +5,8 @@ import com.example.demo.DTO.NucleoDTO;
 import com.example.demo.DTO.mapper.NucleoMapper;
 import com.example.demo.model.Nucleo;
 import com.example.demo.repository.NucleoRepository;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -58,11 +60,13 @@ public class NucleoService {
         return nucleoDTO;
     }
 
+    private NucleoMapper mapper = Mappers.getMapper(NucleoMapper.class);
+
     public NucleoDTO criarNucleo(NucleoDTO nucleoDTO) {
-        Nucleo nucleo = NucleoMapper.toNucleo(nucleoDTO);
+        Nucleo nucleo = mapper.nucleoDTOtoNucleo(nucleoDTO);
         Nucleo savedNucleo = nucleoRepository.save(nucleo);
 
-        return NucleoMapper.toNucleoDTO(savedNucleo);
+        return mapper.nucleoToNucleoDTO(nucleo);
     }
 
     public void remover(Long id) {
