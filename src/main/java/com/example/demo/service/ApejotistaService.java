@@ -4,6 +4,7 @@ import com.example.demo.DTO.ApejotistaDTO;
 import com.example.demo.DTO.mapper.ApejotistaMapper;
 import com.example.demo.model.Apejotista;
 import com.example.demo.repository.ApejotistaRepository;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -67,11 +68,13 @@ public class ApejotistaService {
         return apejotistaDTO;
     }
 
+    private ApejotistaMapper mapper = Mappers.getMapper(ApejotistaMapper.class);
+
     public ApejotistaDTO criarApejotista(ApejotistaDTO apejotistaDTO) {
-        Apejotista apejotista = ApejotistaMapper.toApejotista(apejotistaDTO);
+        Apejotista apejotista = mapper.apejotistaDTOtoApejotista(apejotistaDTO);
         Apejotista savedApejotista = apejotistaRepository.save(apejotista);
 
-        return ApejotistaMapper.toApejotistaDTO(savedApejotista);
+        return mapper.apejotistaToApejotistaDTO(apejotista);
     }
 
     public void remover(Long id) {

@@ -4,6 +4,7 @@ import com.example.demo.DTO.PreceptorDTO;
 import com.example.demo.DTO.mapper.PreceptorMapper;
 import com.example.demo.model.Preceptor;
 import com.example.demo.repository.PreceptorRepository;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -67,11 +68,13 @@ public class PreceptorService {
         return preceptorDTO;
     }
 
+    private PreceptorMapper mapper = Mappers.getMapper(PreceptorMapper.class);
+
     public PreceptorDTO criarPreceptor(PreceptorDTO preceptorDTO){
-        Preceptor preceptor = PreceptorMapper.toPreceptor(preceptorDTO);
+        Preceptor preceptor = mapper.preceptorDTOtoPreceptor(preceptorDTO);
         Preceptor savedPreceptor = preceptorRepository.save(preceptor);
 
-        return PreceptorMapper.toPreceptorDTO(savedPreceptor);
+        return mapper.preceptorToPreceptorDTO(preceptor);
     }
 
     public void remover(Long id){
